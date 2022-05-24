@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/parts/connect_db.php'
+<?php require __DIR__ . '/parts/connect_db.php';
 
 //MVC
 $rows = $pdo->query("SELECT * FROM address_book LIMIT 5") -> fetchAll();
