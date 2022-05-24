@@ -6,7 +6,7 @@ if (!isset($pagename)) {
 
 <style>
     .navbar .navbar-nav .nav-link.active {
-        background-color: #00f;
+        background-color: #ccf;
         color: white;
         font-weight: 800;
         border-radius: 5px;
@@ -30,7 +30,10 @@ if (!isset($pagename)) {
                         <a class="nav-link <?= $pagename == 'index' ? 'active' : '' ?>" href="./index_.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $pagename == 'ab-list' ? 'active' : '' ?>" href="./ab_list.php">ab-list</a>
+                        <a class="nav-link <?= $pagename == 'ab-list' ? 'active' : '' ?>" href="./ab_list.php">通訊錄選單</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $pagename == 'ab-add' ? 'active' : '' ?>" href="./ab_add.php">新增通訊錄</a>
                     </li>
 
                 </ul>

@@ -113,23 +113,31 @@ if ($totalRows > 0) {
     <table class="table table-success table-striped">
         <thead>
             <tr>
+                <th scope="col"><i class="fa-solid fa-pen-to-square"></i></th>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Mobile</th>
                 <th scope="col">Email</th>
                 <th scope="col">Birth</th>
                 <th scope="col">Address</th>
+                <th scope="col"><i class="fa-solid fa-trash-can"></i></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($rows as $r) : ?>
                 <tr>
+                    <td>
+                        <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
                     <td><?= $r['sid'] ?></td>
                     <td><?= $r['name'] ?></td>
                     <td><?= $r['mobile'] ?></td>
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['birthday'] ?></td>
                     <td><?= $r['address'] ?></td>
+                    <td>
+                        <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
