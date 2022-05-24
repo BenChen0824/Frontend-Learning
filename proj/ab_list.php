@@ -40,7 +40,7 @@ if ($totalRows > 0) {
         exit;
     }
 
-    $sql = sprintf("SELECT * FROM address_book LIMIT %s, %s", ($page - 1) * $perpage, $perpage);
+    $sql = sprintf("SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s ", ($page - 1) * $perpage, $perpage);
     // SELECT * FROM address_book LIMIT 0,5
     // 第0筆資料開始 抓5筆
 
