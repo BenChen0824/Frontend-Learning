@@ -1,5 +1,6 @@
 <?php require __DIR__ . '/parts/connect_db.php';
-
+$pagename = 'ab-list';
+$title = '通訊錄-First_Web';
 
 $perpage = 5; //每一頁有幾筆資料
 
