@@ -64,12 +64,20 @@ if ($totalRows > 0) {
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
 
-                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>"><a class="page-link" href="?page=1">First</a></li>
+                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=1">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                    </li>
 
-                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a></li>
+                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page - 1 ?>">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                    </li>
 
                     <?php for ($i = $page - 5; $i <= $page + 5; $i++) :
-                    //這邊for的設定式讓頁樹號碼展開 page=1 他只會顯示1-6 但如果page是10  他會顯示5-15
+                        //這邊for的設定式讓頁樹號碼展開 page=1 他只會顯示1-6 但如果page是10  他會顯示5-15
                         if ($i >= 1 and $i <= $totalPages) :
                             //要給if判斷不然會<1跟超過最大數
                     ?>
@@ -82,9 +90,17 @@ if ($totalRows > 0) {
                     <?php endif;
                     endfor; ?>
 
-                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
+                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page + 1 ?>">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </a>
+                    </li>
 
-                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $totalPages ?>">Last</a></li>
+                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $totalPages ?>">
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>
