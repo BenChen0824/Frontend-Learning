@@ -34,7 +34,8 @@ $rows = [];
 if ($totalRows > 0) {
     if ($page > $totalPages) {
         //頁碼超過總頁數時
-        header('Location: ?page=$totalPages');
+        header("Location: ?page=$totalPages");
+        //記得要雙引號才能引用變數
         exit;
     }
 
@@ -63,41 +64,23 @@ if ($totalRows > 0) {
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
 
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a></li>
 
                     <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
 
-                        <li class="page-item">
+                        <li class="page-item <?= $page == $i ? 'active' : '' ?>">
                             <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                         </li>
                         <!-- href那編寫入php導向位置 -->
                         <!-- 頁碼部分也要嫌入php帶入 -->
                     <?php endfor; ?>
 
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
 
                 </ul>
             </nav>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>"><a class="page-link" href=?page="<?= $page - 1 ?>">Previous</a></li>
-                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                        <li class="page-item <?= $page == $i ? 'active' : '' ?>">
-                            <a class="page-link " href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
-                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>"><a class="page-link" href=?page="<?= $page + 1 ?>">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-
 
 
 
