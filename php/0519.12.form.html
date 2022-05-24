@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form name="form1" onsubmit="senddata(); return false">
+            <input type="text" name="user" placeholder="名稱" />
+            <br />
+            <input type="text" name="account" placeholder="帳號" />
+            <br />
+            <input type="password" name="password" placeholder="密碼" />
+            <br />
+            <input type="submit" />
+        </form>
+
+        <script>
+            async function senddata() {
+                // 沒有外觀的表單
+                const fd = new FormData(document.form1);
+
+                //     for (let i of fd){
+                //         console.log(i);
+                //         //這邊呈現會以陣列來呈現
+                //     }
+
+                //     const urlencoded = new URLSearchParams(fd);
+                //     //將資料轉成url encoded模式
+                //     console.log(urlencoded.toString())
+
+                // Content-Type: multipart/form-data
+                const r = await fetch("0519.12.post.php", {
+                    method: "POST",
+                    body: fd,
+                });
+                const result = await r.json();
+                console.log(result);
+            }
+        </script>
+    </body>
+</html>

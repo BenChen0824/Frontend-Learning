@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const myPromise = (a) => {
+                const n = Math.floor(Math.random() * 500);
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve({ a, n });
+                    }, n);
+                });
+            };
+            const ar = [];
+            for (let i = 0; i < 10; i++) {
+                ar.push(
+                    myPromise(i).then((r) => {
+                        console.log(r);
+                        return r.a
+                    })
+                );
+            }
+
+
+            Promise.all(ar).then(r=>{
+                //Promise本身是一個類別
+                // 只有用new去呼叫才會是個體
+                //這邊意思是讓所有的promise都跑完之後才會來執行這個
+                //因此這裡面的排序會是正確的
+                console.log(r);
+            });
+        </script>
+    </body>
+</html>

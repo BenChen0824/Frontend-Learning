@@ -1,0 +1,16 @@
+
+GET http://localhost/mfee26/php/0518.08.get.php
+
+###
+
+GET http://localhost/mfee26/php/0518.08.get.php?account=ben&password=123456
+
+###
+
+POST http://localhost/mfee26/php/0518.09.post.php
+Content-Type: application/x-www-form-urlencoded
+# 這邊一定要依航空白 區隔上面為header 下面為content POST的用法
+
+account=ben1234&password=987654321
+
+###

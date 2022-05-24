@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form name="form1" onsubmit="senddata(); return false">
+            <input type="number" id="a" name="a" />+
+            <input type="number" id="b" name="b" />
+
+            <input type="submit" value="=" />
+            
+            
+        </form>
+        <div id="info"></div>
+        <br> <br>
+        <button>123</button>
+        <input type="text">
+        <script>
+            function senddata() {
+                const a = document.form1.a.value;
+                const b = document.form1.b.value;
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    info.innerHTML = xhr.responseText;
+                };
+
+                xhr.open(
+                    "GET",
+                    `http://localhost/mfee26/php/0519.01.get.php?a=${a}&b=${b}`,false
+                    // async預設為true 為非同步 當false實為同步 因次這邊會要等5秒跑完再執行後面的動作,畫面會整個卡住
+                );
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>

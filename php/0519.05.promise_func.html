@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const myPromise = (a) => {
+                const n = Math.floor(Math.random() * 500);
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve({ a, n });
+                    }, n);
+                });
+            };
+
+            for (let i = 0; i < 10; i++) {
+                myPromise(i).then((r) => {
+                    console.log(r);
+                });
+            }
+            //這邊產生的10個物件會因為亂數的時間產生 所以第一個不一定會是0
+
+//0519.04.promise_func.html:22 {a: 6, n: 28}
+// 0519.04.promise_func.html:22 {a: 0, n: 44}
+// 0519.04.promise_func.html:22 {a: 5, n: 85}
+// 0519.04.promise_func.html:22 {a: 9, n: 220}
+// 0519.04.promise_func.html:22 {a: 4, n: 228}
+// 0519.04.promise_func.html:22 {a: 2, n: 304}
+// 0519.04.promise_func.html:22 {a: 8, n: 426}
+// 0519.04.promise_func.html:22 {a: 3, n: 480}
+// 0519.04.promise_func.html:22 {a: 7, n: 491}
+// 0519.04.promise_func.html:22 {a: 1, n: 499}
+
+
+
+
+            // myPromise(0)
+            // .then((r)=>{
+            //     console.log(r);
+            //     return myPromise(1);
+            // })
+            // .then((r)=>{
+            //     console.log(r);
+            //     return myPromise(2);
+            // })
+            // .then((r)=>{
+            //     console.log(r);
+            //     return myPromise(3);
+            // })
+            // .then((r)=>{
+            //     console.log(r);
+            // })
+        </script>
+    </body>
+</html>
