@@ -12,7 +12,8 @@ $title = '新增通訊錄資料-First_Web';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form name="form1" onsubmit="return false">
+                    <form name="form1" onsubmit="sendData(); return false" novalidate>
+                        <!-- novalidate用來關閉html5所有功能 -->
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -61,4 +62,19 @@ $title = '新增通訊錄資料-First_Web';
 
 </div>
 <?php include __DIR__ . '/parts/scripts.php' ?>
+<script>
+    async function sendData() {
+        //除錯trycatch確認欄位都有東西
+        const fd = new FormData(document.form1);
+        const r = await fetch('./ab_add_api.php', {
+            method: 'POST',
+            body: fd,
+        });
+        const result = await r.json();
+        console.log(result);
+
+    }
+</script>
+
+
 <?php include __DIR__ . '/parts/html_foot.php' ?>
