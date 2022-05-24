@@ -26,7 +26,7 @@ $sql = "INSERT INTO `address_book`(
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     //下面雙引號execute會自動幫你跳脫
-    "林小明's pen", 'abds@123.com', '0912345678', '1990-08-08', '台北市',
+    "熊大's pen", 'fkold@123.com', '0916842571', '1990-01-02', '新竹市',
     //幾個問號填幾個資料
 ]);
 
