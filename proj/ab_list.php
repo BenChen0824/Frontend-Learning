@@ -2,7 +2,7 @@
 $pagename = 'ab-list';
 $title = '通訊錄-First_Web';
 
-$perpage = 5; //每一頁有幾筆資料
+$perpage = 20; //每一頁有幾筆資料
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 //intval 轉換成整數
