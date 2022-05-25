@@ -135,8 +135,8 @@ if ($totalRows > 0) {
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['birthday'] ?></td>
                     <td><?= $r['address'] ?></td>
-                    <td  onclick="disappear(this);">
-                        <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                    <td>
+                        <a href="#" onclick="disappear(this);"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -151,7 +151,9 @@ if ($totalRows > 0) {
     function disappear(elem) {
         // const disappearrow = document.querySelectorAll('.rowdisappear');
         // disappearrow[this].style.display = 'none';
-        elem.parentNode.style.display = 'none';
+
+        // elem.parentNode.parentNode.style.display = 'none';
+        elem.parentNode.parentNode.remove();
     }
 </script>
 <!-- 這邊是html跟scripts都結束 -->
