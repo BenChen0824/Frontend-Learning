@@ -20,7 +20,20 @@ if (empty($_POST['name'])) {
     exit;
 }
 
+$name = $_POST['name'];
+$email = $_POST['email'] ?? "";
+        //$_POST['email']如果是undefined  給他後面的值
+$mobile = $_POST['mobile'] ?? "";
+$birthday = empty($_POST['birthday']) ? NULL : $_POST['birthday'];
+$address = $_POST['address'] ?? "";
 
+//檢查email是否為空值且email格式是否正確
+if (!empty($email) and filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    $output['error'] = "email狀態錯誤";
+    $output['code'] = '405';
+    echo json_encode($output, JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 $sql = "INSERT INTO `address_book`(
     `name`, `email`, `mobile`, `birthday`, `address`, `created_at`
@@ -30,11 +43,11 @@ $sql = "INSERT INTO `address_book`(
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
-    $_POST['name'],
-    $_POST['email'],
-    $_POST['mobile'],
-    empty($_POST['birthday']) ? NULL : $_POST['birthday'],
-    $_POST['address'],
+    $name,
+    $email,
+    $mobile,
+    $birthday,
+    $address,
 ]);
 
 // $output['success'] = $stmt->rowCount()==1;

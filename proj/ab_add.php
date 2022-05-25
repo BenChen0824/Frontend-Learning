@@ -13,6 +13,7 @@ $title = '新增通訊錄資料-First_Web';
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
                     <form name="form1" onsubmit="sendData(); return false" novalidate>
+                        <!-- data-novalidate意思是自行定義的 所以這樣不會關閉功能 -->
                         <!-- novalidate用來關閉html5所有功能 -->
 
                         <div class="mb-3">
@@ -63,7 +64,41 @@ $title = '新增通訊錄資料-First_Web';
 </div>
 <?php include __DIR__ . '/parts/scripts.php' ?>
 <script>
+    //email格式
+    const email_regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;;
+    //mobile格式
+    const mobile_regexp = /^09\d{2}-?\d{3}-?\d{3}$/;
+    const name_f = document.form1.name
+    const email_f = document.form1.email
+    const mobile_f = document.form1.mobile
+
+
+
     async function sendData() {
+
+        //前端欄位檢查
+        let isPass = true;
+
+        if (name_f.value.length < 2) {
+            alert('姓名至少兩個字');
+            isPass = false;
+        }
+        //如果email有值 但格式不對時會警告
+        if (email_f.value && !email_regexp.test(email_f.value)) {
+            alert('email格式錯誤');
+            isPass = false;
+        }
+        //如果mobile有值 但格式不對時會警告
+        if (mobile_f.value && !mobile_regexp.test(mobile_f.value)) {
+            alert('手機格式錯誤');
+            isPass = false;
+        }
+        if (!isPass) {
+            return
+        }
+
+
+
         //除錯trycatch確認欄位都有東西
         const fd = new FormData(document.form1);
         const r = await fetch('./ab_add_api.php', {
