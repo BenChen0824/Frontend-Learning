@@ -136,7 +136,7 @@ if ($totalRows > 0) {
                     <td><?= $r['birthday'] ?></td>
                     <td><?= $r['address'] ?></td>
                     <td>
-                        <a href="#" onclick="disappear(this);"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="./ab_delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
             <?php endforeach ?>

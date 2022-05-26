@@ -136,7 +136,7 @@ if ($totalRows > 0) {
                     <td><?= $r['birthday'] ?></td>
                     <td><?= $r['address'] ?></td>
                     <td>
-                        <a href="javascript:" onclick="disappear(event); return false"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="javascript:" onclick="disappear(this); return false"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -148,14 +148,20 @@ if ($totalRows > 0) {
 
 <?php include __DIR__ . '/parts/scripts.php' ?>
 <script>
-    function disappear(event) {
-        // console.log(event.currentTarget);
-        // console.log(event.Target);
-        const a_tag = event.currentTarget;
-        const tr = a_tag.closest('tr');
-        console.log(tr);
-        tr.remove();
-    }
+    function disappear(elem) {
+        // const disappearrow = document.querySelectorAll('.rowdisappear');
+        // disappearrow[this].style.display = 'none';
+
+        // elem.parentNode.parentNode.style.display = 'none';
+        elem.parentNode.parentNode.remove();
+        // function disappear(event) {
+        //     // console.log(event.currentTarget);
+        //     // console.log(event.Target);
+        //     const a_tag = event.currentTarget;
+        //     const tr = a_tag.closest('tr');
+        //     console.log(tr);
+        //     tr.remove();
+        // }
 </script>
 <!-- 這邊是html跟scripts都結束 -->
 <?php include __DIR__ . '/parts/html_foot.php' ?>
