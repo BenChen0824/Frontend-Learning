@@ -39,8 +39,8 @@ if (empty($row)) {
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
                     <form name="form1" onsubmit="sendData(); return false" novalidate>
-                        <!-- data-novalidate意思是自行定義的 所以這樣不會關閉功能 -->
-                        <!-- novalidate用來關閉html5所有功能 -->
+                        <input type="hidden" name="sid" value="<?= ($row['sid']) ?>">
+                        <!-- 讓他在抓資料時會直接比對到sid必較好比對 -->
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -65,7 +65,7 @@ if (empty($row)) {
                         </div>
 
                         <div class="mb-3">
-                            <label for="birthday" class="form-label">Email address</label>
+                            <label for="birthday" class="form-label">birthday</label>
                             <input type="date" class="form-control" id="birthday" name="birthday" value="<?= $row['birthday'] ?>">
                             <div class="form-text"></div>
                         </div>
@@ -81,7 +81,7 @@ if (empty($row)) {
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
-                        資料新增成功
+                        資料編輯成功
                     </div>
                 </div>
             </div>
@@ -131,25 +131,7 @@ if (empty($row)) {
         let isPass = true;
 
         if (name_f.value.length < 2) {
-            // alert('姓名至少兩個字');
-            /*
-            // element.classList (add,remove cotains)
-            name_f.classList.add('red');
-            //表格變紅
 
-            // name_f.nextElementSibling.classList.add('red');
-            //字體變紅
-
-            // name_f.closest('.mb-3').querySelector('.form-text').classList.add('red');
-            // .closest 可以往上一直找直到找到指定的MB-3 不限一層
-             //字體變紅
-
-            name_f.parentNode.querySelector('.form-text').classList.add('red');
-            //.parentNode只會往上找一層
-             //字體變紅
-            */
-
-            //將資料直接放在陣列裡面 利用陣列裡面資料直接改變比較快
             fields[0].classList.add('red');
             fieldTexts[0].innerText = '姓名至少兩個字';
             isPass = false;
@@ -173,10 +155,8 @@ if (empty($row)) {
         }
 
 
-
-        //除錯trycatch確認欄位都有東西
         const fd = new FormData(document.form1);
-        const r = await fetch('./ab_add_api.php', {
+        const r = await fetch('./ab_update_api.php', {
             method: 'POST',
             body: fd,
         });
@@ -188,15 +168,15 @@ if (empty($row)) {
             //result.success 去查看add_api裡最下面 成功的話會是true
             info_bar.classList.remove('alert-danger');
             info_bar.classList.add('alert-success');
-            info_bar.innerText = '新增成功';
+            info_bar.innerText = '修改成功';
 
-            setTimeout(() => {
-                location.href = 'ab_list.php'; // 跳轉到列表頁
-            }, 4000); //延遲4秒
+            // setTimeout(() => {
+            //     location.href = 'ab_list.php'; // 跳轉到列表頁
+            // }, 4000); //延遲4秒
         } else {
             info_bar.classList.remove('alert-success');
             info_bar.classList.add('alert-danger');
-            info_bar.innerText = result.error || '資料無法新增';
+            info_bar.innerText = result.error || '資料沒有改變';
         }
     }
 </script>
