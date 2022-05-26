@@ -22,3 +22,5 @@ foreach($ar as $url){
     };
 }
 echo '完成';
+
+// document.images.foreach(img=>console(img.src))
