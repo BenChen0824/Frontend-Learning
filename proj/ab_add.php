@@ -102,9 +102,9 @@ $title = '新增通訊錄資料-First_Web';
             //for in 拿到的是index值
             fields[i].classList.remove('red');
             fieldTexts[i].innerText = '';
-
         }
 
+        info_bar.style.display = 'none'; // 隱藏訊息列,如果沒有跳轉頁面要讓她回復到不存在 後面成功在顯示出來
 
 
         //前端欄位檢查
@@ -128,6 +128,8 @@ $title = '新增通訊錄資料-First_Web';
             //.parentNode只會往上找一層
              //字體變紅
             */
+
+            //將資料直接放在陣列裡面 利用陣列裡面資料直接改變比較快
             fields[0].classList.add('red');
             fieldTexts[0].innerText = '姓名至少兩個字';
             isPass = false;
@@ -160,15 +162,17 @@ $title = '新增通訊錄資料-First_Web';
         });
         const result = await r.json();
         console.log(result);
+
         info_bar.style.display = "block";
         if (result.success) {
+            //result.success 去查看add_api裡最下面 成功的話會是true
             info_bar.classList.remove('alert-danger');
             info_bar.classList.add('alert-success');
             info_bar.innerText = '新增成功';
 
             setTimeout(() => {
                 location.href = 'ab_list.php'; // 跳轉到列表頁
-            }, 4000);
+            }, 4000);//延遲4秒
         } else {
             info_bar.classList.remove('alert-success');
             info_bar.classList.add('alert-danger');
