@@ -130,11 +130,15 @@ if ($totalRows > 0) {
                         <a href="./ab_update.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                     </td>
                     <td><?= $r['sid'] ?></td>
-                    <td><?= $r['name'] ?></td>
+                    <td><?= htmlentities($r['name']) ?></td>
                     <td><?= $r['mobile'] ?></td>
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['birthday'] ?></td>
-                    <td><?= $r['address'] ?></td>
+                    <td><?= htmlentities($r['address']) ?></td>
+                    <!-- 如果再有裡面有script的狀況 要html跳脫 -->
+
+                    <!-- <td><?= strip_tags($r['address']) ?></td> -->
+                    <!-- 這邊也是為了讓列表跳多有<>的符號 -->
                     <td>
                         <a href="javascript: delete_it(<?= $r['sid'] ?>)">
                             <i class="fa-solid fa-trash-can"></i>
@@ -142,7 +146,7 @@ if ($totalRows > 0) {
 
                         <?php /*
                         <a href="./ab_delete.php?sid=<?= $r['sid'] ?>" onclick="return comfirm('請問確定要刪除編號<?= $r['sid'] ?>的資料嗎')"><i class="fa-solid fa-trash-can"></i></a>
-                        */?>
+                        */ ?>
 
                     </td>
                 </tr>
