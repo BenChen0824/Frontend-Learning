@@ -6,6 +6,16 @@ $title = '新增通訊錄資料-First_Web';
 <?php include __DIR__ . '/parts/html_head.php' ?>
 <?php include __DIR__ . '/parts/navbar.php' ?>
 
+<style>
+    .form-control.red {
+        border: 1px solid red;
+    }
+
+    .form-text.red {
+        color: red;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -20,13 +30,13 @@ $title = '新增通訊錄資料-First_Web';
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                             <!-- required是必填欄位 -->
-                            <div class="form-text"></div>
+                            <div class="form-text red"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email">
-                            <div class="form-text"></div>
+                            <div class="form-text red"></div>
                         </div>
 
                         <div class="mb-3">
@@ -34,7 +44,7 @@ $title = '新增通訊錄資料-First_Web';
                             <!-- 這邊type也是text -->
                             <input type="text" class="form-control" id="mobile" name="mobile" pattern="09\d{8}">
                             <!-- pattern是用來限制格式的 -->
-                            <div class="form-text"></div>
+                            <div class="form-text red"></div>
                         </div>
 
                         <div class="mb-3">
@@ -53,6 +63,9 @@ $title = '新增通訊錄資料-First_Web';
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                    <div id="info-bar" class="alert alert-success" role="alert" style="display:none;">
+                        資料新增成功
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,29 +81,69 @@ $title = '新增通訊錄資料-First_Web';
     const email_regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;;
     //mobile格式
     const mobile_regexp = /^09\d{2}-?\d{3}-?\d{3}$/;
-    const name_f = document.form1.name
-    const email_f = document.form1.email
-    const mobile_f = document.form1.mobile
+    const name_f = document.form1.name;
+    const email_f = document.form1.email;
+    const mobile_f = document.form1.mobile;
 
+    const info_bar = document.querySelector('#info-bar');
+
+    const fields = [name_f, email_f, mobile_f];
+    const fieldTexts = [];
+    for (let i of fields) {
+        fieldTexts.push(i.nextElementSibling);
+        //將要放提示文字的部分放到陣列中
+    }
 
 
     async function sendData() {
+
+        //一開始先讓欄位外觀回復原狀
+        for (let i in fields) {
+            //for in 拿到的是index值
+            fields[i].classList.remove('red');
+            fieldTexts[i].innerText = '';
+
+        }
+
+
 
         //前端欄位檢查
         let isPass = true;
 
         if (name_f.value.length < 2) {
-            alert('姓名至少兩個字');
+            // alert('姓名至少兩個字');
+            /*
+            // element.classList (add,remove cotains)
+            name_f.classList.add('red');
+            //表格變紅
+
+            // name_f.nextElementSibling.classList.add('red');
+            //字體變紅
+
+            // name_f.closest('.mb-3').querySelector('.form-text').classList.add('red');
+            // .closest 可以往上一直找直到找到指定的MB-3 不限一層
+             //字體變紅
+
+            name_f.parentNode.querySelector('.form-text').classList.add('red');
+            //.parentNode只會往上找一層
+             //字體變紅
+            */
+            fields[0].classList.add('red');
+            fieldTexts[0].innerText = '姓名至少兩個字';
             isPass = false;
         }
         //如果email有值 但格式不對時會警告
         if (email_f.value && !email_regexp.test(email_f.value)) {
-            alert('email格式錯誤');
+            // alert('email格式錯誤');
+            fields[1].classList.add('red');
+            fieldTexts[1].innerText = 'email 格式錯誤';
             isPass = false;
         }
         //如果mobile有值 但格式不對時會警告
         if (mobile_f.value && !mobile_regexp.test(mobile_f.value)) {
-            alert('手機格式錯誤');
+            // alert('手機格式錯誤');
+            fields[2].classList.add('red');
+            fieldTexts[2].innerText = '手機號碼格式錯誤';
             isPass = false;
         }
         if (!isPass) {
@@ -107,7 +160,20 @@ $title = '新增通訊錄資料-First_Web';
         });
         const result = await r.json();
         console.log(result);
+        info_bar.style.display = "block";
+        if (result.success) {
+            info_bar.classList.remove('alert-danger');
+            info_bar.classList.add('alert-success');
+            info_bar.innerText = '新增成功';
 
+            setTimeout(() => {
+                location.href = 'ab_list.php'; // 跳轉到列表頁
+            }, 4000);
+        } else {
+            info_bar.classList.remove('alert-success');
+            info_bar.classList.add('alert-danger');
+            info_bar.innerText = result.error || '資料無法新增';
+        }
     }
 </script>
 
