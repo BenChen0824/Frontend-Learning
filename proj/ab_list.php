@@ -127,7 +127,7 @@ if ($totalRows > 0) {
             <?php foreach ($rows as $r) : ?>
                 <tr>
                     <td>
-                        <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="./ab_update.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                     </td>
                     <td><?= $r['sid'] ?></td>
                     <td><?= $r['name'] ?></td>
@@ -136,7 +136,14 @@ if ($totalRows > 0) {
                     <td><?= $r['birthday'] ?></td>
                     <td><?= $r['address'] ?></td>
                     <td>
-                        <a href="./ab_delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="javascript: delete_it(<?= $r['sid'] ?>)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+
+                        <?php /*
+                        <a href="./ab_delete.php?sid=<?= $r['sid'] ?>" onclick="return comfirm('請問確定要刪除編號<?= $r['sid'] ?>的資料嗎')"><i class="fa-solid fa-trash-can"></i></a>
+                        */?>
+
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -154,6 +161,17 @@ if ($totalRows > 0) {
 
         // elem.parentNode.parentNode.style.display = 'none';
         elem.parentNode.parentNode.remove();
+    }
+
+    function delete_it(sid) {
+        if (confirm(`請問要刪除編號為${sid}的資料嗎?`)) {
+            location.href = `ab_delete.php?sid=${sid}`;
+        }
+
+
+
+
+
     }
 </script>
 <!-- 這邊是html跟scripts都結束 -->

@@ -6,4 +6,12 @@ if (!empty($sid)) {
     $pdo->query("DELETE FROM `address_book` WHERE sid=$sid");
 }
 
-header("Location: ab_list.php");
+$come_from = "ab_list.php";
+
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    $come_from = $_SERVER['HTTP_REFERER'];
+    //用戶端傳給後資料庫的檔頭
+    //常數 死背吧嗚嗚
+}
+
+header("Location: $come_from");
