@@ -24,7 +24,7 @@ $hobbies = [
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <form name='form1' onsubmit="return false;">
+                <form name='form1' onsubmit="senddata(); return false;">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">嗜好1</label>
 
@@ -39,23 +39,40 @@ $hobbies = [
                     </div>
                     <!-- 用於選項較多的時候 -->
 
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">嗜好 2</label>
+                        <?php foreach ($hobbies as $k => $v) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hobby2" id="hobby2-<?= $k ?>" value="<?= $k ?>">
+                                <!-- for name id value記得改 -->
+                                <!-- value在這邊的意思是當他點選某一選項時 才能抓到對應的key值 -->
+                                <!-- form1.hobby2.value 可以來側你選到哪個欄位根所對應的key值 -->
+                                <label class="form-check-label" for="hobby2-<?= $k ?>">
+                                    <?= $v ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
 
-                    <label for="exampleInputEmail1" class="form-label">嗜好2</label>
-                    <?php foreach ($hobbies as $k => $v) : ?>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="hobby2" id="hobby2<?= $k ?>" value="<?= $k ?>">
-                            <!-- for name id value記得改 -->
-                            <!-- value在這邊的意思是當他點選某一選項時 才能抓到對應的key值 -->
-                            <!-- form1.hobby2.value 可以來側你選到哪個欄位根所對應的key值 -->
-                            <label class="form-check-label" for="hobby2<?= $k ?>">
-                                <?= $v ?>"
-                            </label>
-                        </div>
-                    <?php endforeach ?>
+
                     <!-- 用於選項較少的時候 -->
+                    <!-- 多選1 -->
 
 
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">嗜好 3</label>
+                        <?php foreach ($hobbies as $k => $v) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="hobby3[]" id="hobby3-<?= $k ?>" value="<?= $k ?>">
+                                <label class="form-check-label" for="hobby3-<?= $k ?>">
+                                    <?= $v ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
 
+                    <input type="hidden" name="test[]" value="hello">
+                    <input type="hidden" name="test[]" value="哈囉">
 
 
 
@@ -91,7 +108,22 @@ $hobbies = [
 
 
 
+    <script>
+        async function senddata() {
+            const fd = new FormData(document.form1);
+            const r = await fetch('0526.02.forms_api.php', {
+                method: 'POST',
+                body: fd,
 
+            });
+
+            const result = await r.json();
+
+            console.log(result);
+
+
+        }
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
