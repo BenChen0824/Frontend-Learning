@@ -1,8 +1,7 @@
 <?php 
 require __DIR__ . '/parts/connect_db.php';
 $pageName = 'ab-list';
-$title = '通訊錄列表 - 小新的網站';
-
+$title = '通訊錄-First_Web';
 $perPage = 20; // 每一頁有幾筆
 
 // 用戶要看第幾頁
