@@ -7,16 +7,25 @@
         <title>Document</title>
     </head>
     <body>
-        <button onclick="dopush()">push state</button>
+        <button onclick="dopush('bill')">Bill</button>
+        <button onclick="dopush('david')">David</button>
 
         <script>
-            function dopush() {
-                history.pushState({name:"bill"},null, "?name=bill");//query string
+            function dopush(name) {
+                history.pushState({ name }, null, "?name=" + name);
+
+                // history.pushState({name:"bill"},null, "?name=bill");//query string
                 // history.pushtate({ name: "bill" }, null, "/abcd/efg");
                 // //pathname 會是404(Not Found)
                 // //上面兩個都可以用location去查詢確認
                 // history.pushState({name:"bill"},null, "https://www.google.com/");//因為是外面的網路 沒用
             }
+            window.addEventListener("popstate", (event) => {
+                //popstate 用於上一頁時 也不會進行畫面跳轉
+                //!!!!!!注意 如果是直接更換query string的話是不會有popstate的
+                console.log(event.state);
+                console.log(location.search);
+            });
         </script>
     </body>
 </html>
