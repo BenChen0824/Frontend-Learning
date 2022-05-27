@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="dopush()">push state</button>
+
+        <script>
+            function dopush() {
+                history.pushState({name:"bill"},null, "?name=bill");//query string
+                // history.pushtate({ name: "bill" }, null, "/abcd/efg");
+                // //pathname 會是404(Not Found)
+                // //上面兩個都可以用location去查詢確認
+                // history.pushState({name:"bill"},null, "https://www.google.com/");//因為是外面的網路 沒用
+            }
+        </script>
+    </body>
+</html>
