@@ -16,6 +16,13 @@ $output = [
     'error' => '',
 ];
 
+if (empty($_FILES['avatar'])) {
+    $output['error'] = '沒有上傳檔案';
+    echo json_encode($output, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+
 //將[$_FILES['avatar']['type']]作為搜尋extmap的參數 如果沒資料會回傳undefine 那就會是empty並執行錯誤
 if (empty($extMap[$_FILES['avatar']['type']])) {
     $output['error'] = '檔案類型錯誤';
