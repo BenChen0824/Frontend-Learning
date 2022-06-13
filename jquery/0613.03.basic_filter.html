@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>td1</td>
+                            <td>td2</td>
+                            <td>td3</td>
+                            <td>td4</td>
+                            <td>td5</td>
+                        </tr>
+                        <tr>
+                            <td>td1</td>
+                            <td><h3>td2</h3></td>
+                            <td>td3</td>
+                            <td>td4</td>
+                            <td>td5</td>
+                        </tr>
+                        <tr>
+                            <td>td1</td>
+                            <td>td2</td>
+                            <td>td3</td>
+                            <td><h4>td4</h4></td>
+                            <td>td5</td>
+                        </tr>
+                        <tr>
+                            <td>td1</td>
+                            <td><h5>td2</h5></td>
+                            <td>td3</td>
+                            <td>td4</td>
+                            <td>td5</td>
+                        </tr>
+                        <tr>
+                            <td>td1</td>
+                            <td>td2</td>
+                            <td>td3</td>
+                            <td>td4</td>
+                            <td>td5</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            //basic filter 過濾器
+            $("td:even").css("background", "#ffcccc");
+            // 偶數選擇器
+            $("td:odd").css("background", "#ccccff");
+            //奇數選擇器
+            $("td:eq(5)").css("background", "red");
+            //選擇單個
+            $("td:first()").css("color", "#ffffff");
+            //選擇第一個
+            $("td:last()").css("color", "#ffffff");
+            //選擇最後一個
+            $("td:gt(22)").css("background", "purple");
+            //選擇n=22以後資料
+            $("td:lt(3)").css("background", "purple");
+            //選擇n=3以前資料
+            $(":header").css("color", "#00ffff");
+            //選擇所有header
+            $(":header:eq(0)").css("color", "darkgray");
+            //選擇所有header裡的第一個
+        </script>
+    </body>
+</html>
