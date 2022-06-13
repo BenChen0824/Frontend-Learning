@@ -111,6 +111,7 @@ if (empty($row)) {
     const fieldTexts = [];
     for (let i of fields) {
         fieldTexts.push(i.nextElementSibling);
+        
         //將要放提示文字的部分放到陣列中
     }
 
@@ -162,6 +163,7 @@ if (empty($row)) {
         });
         const result = await r.json();
         console.log(result);
+        
 
         info_bar.style.display = "block";
         if (result.success) {
@@ -170,9 +172,9 @@ if (empty($row)) {
             info_bar.classList.add('alert-success');
             info_bar.innerText = '修改成功';
 
-            // setTimeout(() => {
-            //     location.href = 'ab_list.php'; // 跳轉到列表頁
-            // }, 4000); //延遲4秒
+            setTimeout(() => {
+                location.href = 'ab_list.php'; // 跳轉到列表頁
+            }, 4000); //延遲4秒
         } else {
             info_bar.classList.remove('alert-success');
             info_bar.classList.add('alert-danger');

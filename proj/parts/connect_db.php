@@ -1,9 +1,9 @@
 <?php
 
 $db_host = 'localhost'; // 主機名稱
-$db_user = 'chen'; // 資料庫連線的用戶
-$db_pass = 'fuck721523'; // 連線用戶的密碼
-$db_name = 'mfee26';  // 資料庫名稱
+$db_user = 'ben'; // 資料庫連線的用戶
+$db_pass = 'ben'; // 連線用戶的密碼
+$db_name = 'mfee_26';  // 資料庫名稱
 //如果沒寫就是沒指定 可以進的去淡之後容易抱錯
 $db_charset = 'utf8';
 // $db_collate = 'utf-8_unicode'
